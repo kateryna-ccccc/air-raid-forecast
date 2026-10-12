@@ -1,0 +1,3 @@
+method,role,MAE,bias
+poisson_log_all,main (fixed on validation),2.531,-0.6806
+yesterday,comparison,3.5714,-0.1429

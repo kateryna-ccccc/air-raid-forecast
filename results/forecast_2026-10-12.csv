@@ -1,0 +1,2 @@
+place,forecast_day,made_as_if_at,data_up_to_and_including,target,poisson_log_all,yesterday,actual_for_forecast_day,training_problems
+Kyiv city,2026-10-12,2026-10-12 00:00,2026-10-11,alert starts per day,7.43,8.0,incomplete data,none
