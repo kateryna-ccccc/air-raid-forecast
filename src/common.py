@@ -64,3 +64,8 @@ def rolling_forecast(series: pd.Series, forecast_fn: ForecastFn,
 def mae(results: pd.DataFrame) -> float:
     """Mean absolute error: on average, by how many alerts the forecast is off."""
     return float((results["actual"] - results["predicted"]).abs().mean())
+
+
+def bias(results: pd.DataFrame) -> float:
+    """Mean of (predicted - actual). Negative = the forecast is too low on average."""
+    return float((results["predicted"] - results["actual"]).mean())
