@@ -41,13 +41,20 @@ def load_daily() -> pd.Series:
 
 
 def rolling_forecast(series: pd.Series, forecast_fn: ForecastFn,
-                     start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+                     start: pd.Timestamp, end: pd.Timestamp,
+                     allow_test: bool = False) -> pd.DataFrame:
     """
     One-day-ahead forecasts for every day from start to end.
 
     For each day D the forecast is made at 00:00 of D, so forecast_fn sees
     only days strictly before D. This is the main protection against data leakage.
+
+    allow_test=False stops the script if any forecast day is in the test period,
+    so the test cannot be used by accident while choosing a method.
     """
+    if end >= TEST_START and not allow_test:
+        raise SystemExit("This run would use the test period; pass allow_test=True "
+                         "only in the final test script.")
     rows = []
     for day in pd.date_range(start, end, freq="D"):
         history = series[series.index < day]
